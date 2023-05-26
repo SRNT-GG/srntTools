@@ -9,7 +9,7 @@ else
     return 
 end
 
-function autoRepair()
+local function autoRepair()
     if not MerchantFrame:IsVisible() or not MerchantFrame.selectedTab == 1 then
         return
     end

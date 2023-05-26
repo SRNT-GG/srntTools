@@ -1,7 +1,3 @@
-local db = srntTools.db
-local config = {
-    ["autoSellSpam"] = true,
-}
 if srntTools and srntTools:autoVendorGet() then
     local greenText = "|cff00ff00enabled|r"
     srntprint("Auto vendor is " .. greenText)
@@ -10,6 +6,7 @@ else
     srntprint("Auto vendor is " .. greenText)
     return 
 end
+
 local DeleteCursorItem = DeleteCursorItem
 local GetContainerItemInfo = GetContainerItemInfo
 local GetItemInfo = GetItemInfo
@@ -18,7 +15,7 @@ local PickupMerchantItem = (C_Container.PickupMerchantItem or PickupMerchantItem
 local GetContainerNumSlots = (C_Container.GetContainerNumSlots or GetContainerNumSlots)
 local GetContainerItemLink = (C_Container.GetContainerItemLink or GetContainerItemLink)
 
-function autoVendor()
+local function autoVendor()
     local greyItems = {}
     local totalSellPrice = 0
     -- Construct a table of items to sell
@@ -65,7 +62,7 @@ function autoVendor()
 end
 
 -- Sells a individual item, require bag and slot, itemlink is only used if spam is enabled.
-function sellItem(bag, slot, itemLink)
+local function sellItem(bag, slot, itemLink)
     if not MerchantFrame:IsVisible() or not MerchantFrame.selectedTab == 1 then
         return
     end
@@ -84,7 +81,7 @@ function sellItem(bag, slot, itemLink)
 end
 
 -- Checks if a item is junk or not
-function isItemJunk(item, bag, slot)
+local function isItemJunk(item, bag, slot)
     if not item then
 		return false
 	end
