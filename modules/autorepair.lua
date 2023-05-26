@@ -4,8 +4,8 @@ if srntTools and srntTools:autoRepairGet() then
     local greenText = "|cff00ff00enabled|r"
     srntprint("Auto repair is " .. greenText)
 else
-    local greenText = "|cffff0000disabled|r"
-    srntprint("Auto repair is " .. greenText)
+    local redText = "|cffff0000disabled|r"
+    srntprint("Auto repair is " .. redText)
     return 
 end
 

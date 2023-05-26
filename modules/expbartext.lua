@@ -3,10 +3,10 @@
 
 if srntTools and srntTools:customXpBarTextGet() then
     local greenText = "|cff00ff00enabled|r"
-    srntprint("Auto vendor is " .. greenText)
-else
-    local greenText = "|cffff0000disabled|r"
     srntprint("Custom XP bar text " .. greenText)
+else
+    local redText = "|cffff0000disabled|r"
+    srntprint("Custom XP bar text " .. redText)
     return 
 end
 local config = {

@@ -2,8 +2,8 @@ if srntTools and srntTools:autoVendorGet() then
     local greenText = "|cff00ff00enabled|r"
     srntprint("Auto vendor is " .. greenText)
 else
-    local greenText = "|cffff0000disabled|r"
-    srntprint("Auto vendor is " .. greenText)
+    local redText = "|cffff0000disabled|r"
+    srntprint("Auto vendor is " .. redText)
     return 
 end
 
@@ -15,7 +15,7 @@ local PickupMerchantItem = (C_Container.PickupMerchantItem or PickupMerchantItem
 local GetContainerNumSlots = (C_Container.GetContainerNumSlots or GetContainerNumSlots)
 local GetContainerItemLink = (C_Container.GetContainerItemLink or GetContainerItemLink)
 
-local function autoVendor()
+function srntTools:autoVendor()
     local greyItems = {}
     local totalSellPrice = 0
     -- Construct a table of items to sell
@@ -27,7 +27,7 @@ local function autoVendor()
                 if itemLink then
                     local itemSellPrice = select(11, GetItemInfo(itemLink))
                     local _, _, _, _, _, itemType, itemSubType = GetItemInfo(itemLink)
-                    if isItemJunk(itemLink, bag, slot) and itemSellPrice and itemSellPrice > 0 then
+                    if srntTools:isItemJunk(itemLink, bag, slot) and itemSellPrice and itemSellPrice > 0 then
                         totalSellPrice = totalSellPrice + itemSellPrice
                         table.insert(greyItems, {
                             ["bag"] = bag,
@@ -45,7 +45,7 @@ local function autoVendor()
     for key, value in pairs(greyItems) do
         if value then
             C_Timer.After(0.15*loopCounter, function()
-                sellItem(value.bag, value.slot, value.itemLink)
+                srntTools:sellItem(value.bag, value.slot, value.itemLink)
             end)
             loopCounter = loopCounter + 1
         end
@@ -62,7 +62,7 @@ local function autoVendor()
 end
 
 -- Sells a individual item, require bag and slot, itemlink is only used if spam is enabled.
-local function sellItem(bag, slot, itemLink)
+function srntTools:sellItem(bag, slot, itemLink)
     if not MerchantFrame:IsVisible() or not MerchantFrame.selectedTab == 1 then
         return
     end
@@ -81,7 +81,7 @@ local function sellItem(bag, slot, itemLink)
 end
 
 -- Checks if a item is junk or not
-local function isItemJunk(item, bag, slot)
+function srntTools:isItemJunk(item, bag, slot)
     if not item then
 		return false
 	end
@@ -102,5 +102,5 @@ local frame = CreateFrame("Frame")
 frame:RegisterEvent("MERCHANT_SHOW")
 frame:SetScript("OnEvent", function(self, event, addonName)
     -- Call autoVendor function
-    autoVendor()
+    srntTools:autoVendor()
 end)
