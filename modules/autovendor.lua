@@ -32,7 +32,8 @@ function srntTools:autoVendor()
                         table.insert(greyItems, {
                             ["bag"] = bag,
                             ["slot"] = slot,
-                            ["itemLink"] = itemLink
+                            ["itemLink"] = itemLink,
+                            ["itemSellPrice"] = itemSellPrice
                         })
                     end
                 end
@@ -45,7 +46,7 @@ function srntTools:autoVendor()
     for key, value in pairs(greyItems) do
         if value then
             C_Timer.After(0.15*loopCounter, function()
-                srntTools:sellItem(value.bag, value.slot, value.itemLink)
+                srntTools:sellItem(value.bag, value.slot, value.itemLink, value.itemSellPrice)
             end)
             loopCounter = loopCounter + 1
         end
@@ -55,24 +56,25 @@ function srntTools:autoVendor()
     if totalSellPrice > 0 then
         local totalSellTime = #greyItems * 0.15
         C_Timer.After(totalSellTime + 0.30, function()
-            srntprint("Sold ".. #greyItems .. " junk items worth " .. GetCoinTextureString(totalSellPrice) .. " it took approximatly ".. totalSellTime .. "sec to sell.")
+            srntprint("Sold " .. #greyItems .. " junk items worth " .. GetCoinTextureString(totalSellPrice) .. " it took approximatly " .. totalSellTime .. "sec to sell.")
         end)
         
     end
 end
 
 -- Sells a individual item, require bag and slot, itemlink is only used if spam is enabled.
-function srntTools:sellItem(bag, slot, itemLink)
+function srntTools:sellItem(bag, slot, itemLink, itemSellPrice)
     if not MerchantFrame:IsVisible() or not MerchantFrame.selectedTab == 1 then
         return
     end
     
+    -- Neither bag nor slot is allowed to be nil
     if not bag or not slot then
         return
     end
 
-    if srntTools:autoSellSpamGet() and itemLink then
-        srntprint("Sold:" ..itemLink)
+    if srntTools:autoSellSpamGet() and itemLink and itemSellPrice then
+        srntprint("Sold:" .. itemLink .. " for " .. GetCoinTextureString(itemSellPrice))
     end
 
     -- Sell the it
