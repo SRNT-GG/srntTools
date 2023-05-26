@@ -1,5 +1,3 @@
-
-
 if srntTools and srntTools:autoRepairGet() then
     local greenText = "|cff00ff00enabled|r"
     srntprint("Auto repair is " .. greenText)
@@ -22,7 +20,7 @@ local function autoRepair()
         else
             srntprint("You don't have enough money to repair your equipment.")
         end
-    else
+    elseif autoRepairAlwaysText then -- Toggle this in srntTools.lua
         srntprint("Your equipment is already at full durability, no need to repair!")
     end
 end

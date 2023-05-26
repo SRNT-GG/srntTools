@@ -2,7 +2,7 @@
 ## Title: SrntTools
 ## Notes: Small useful tools. /srntTools ingame for config.
 ## Author: SRNT 
-## Version: 1.1.0
+## Version: 1.2.0
 ## SavedVariables: srntToolsDB
 ## OptionalDeps: Ace3
 

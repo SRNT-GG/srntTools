@@ -1,6 +1,3 @@
-
-
-
 if srntTools and srntTools:customXpBarTextGet() then
     local greenText = "|cff00ff00enabled|r"
     srntprint("Custom XP bar text " .. greenText)
@@ -9,13 +6,8 @@ else
     srntprint("Custom XP bar text " .. redText)
     return 
 end
-local config = {
-    ["xpBar"] = {
-        ["customXpBarTextEnabled"] = true,
-        ["customXpBarTextSize"] = 14,
-    }
-}
-if UnitLevel("player") < 80 or not srntTools:customXpBarTextGet() then
+
+if UnitLevel("player") < 80 then -- Nonsense to run any code on a bar that doesn't exist.
     -- Expbar text variablesw
     local currentExp = UnitXP("player")
     local maxExp = UnitXPMax("player")
@@ -23,7 +15,7 @@ if UnitLevel("player") < 80 or not srntTools:customXpBarTextGet() then
     local remainingExp = maxExp - currentExp
 
     -- Create a FontString for the experience text
-    local expText = MainMenuExpBar:CreateFontString(nil, "OVERLAY", "GameTooltipText") --frame:CreateFontString(nil, "OVERLAY", "GameTooltipText")
+    local expText = MainMenuExpBar:CreateFontString(nil, "OVERLAY", "GameTooltipText")
     expText:SetPoint("CENTER", MainMenuBarExpText, "CENTER", 0, 0)
     expText:SetFont([[Interface\AddOns\srntTools\fonts\expressway.ttf]], srntTools:customXpBarFontsizeGet(), "OUTLINE")
     expText:SetJustifyH("CENTER")

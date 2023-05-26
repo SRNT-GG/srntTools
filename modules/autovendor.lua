@@ -18,6 +18,7 @@ local GetContainerItemLink = (C_Container.GetContainerItemLink or GetContainerIt
 function srntTools:autoVendor()
     local greyItems = {}
     local totalSellPrice = 0
+    
     -- Construct a table of items to sell
     for bag = 0, 4 do
         local numSlots = GetContainerNumSlots(bag)
@@ -77,7 +78,7 @@ function srntTools:sellItem(bag, slot, itemLink, itemSellPrice)
         srntprint("Sold:" .. itemLink .. " for " .. GetCoinTextureString(itemSellPrice))
     end
 
-    -- Sell the it
+    -- Sell the item
     PickupContainerItem(bag, slot)
     PickupMerchantItem()
 end
@@ -88,7 +89,7 @@ function srntTools:isItemJunk(item, bag, slot)
 		return false
 	end
 
-	-- is it grey quality item?
+	-- Is it grey quality item?
 	local grey = string.find(item,"|cff9d9d9d")
     local armor_weapon = ((sType == "Armor") or (sType == "Weapon"));
 
