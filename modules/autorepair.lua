@@ -1,7 +1,4 @@
-if not srntTools:IsInitialized() then
-    srntprint("Not init..")
-    return
-end
+
 
 if srntTools and srntTools:autoRepairGet() then
     local greenText = "|cff00ff00enabled|r"

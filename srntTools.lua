@@ -1,7 +1,7 @@
 srntTools = LibStub("AceAddon-3.0"):NewAddon("srntTools", "AceConsole-3.0", "AceEvent-3.0")
 
 -- Default settings
-local config = {
+srntTools.db = {
 	autoVendor = true,
 	autoRepair = true,
 	autoSellSpam = true,
@@ -10,7 +10,6 @@ local config = {
 }
 
 -- We need the DB through out the addon
-srntTools.db = config
 function srntTools:OnInitialize()
 	self:RegisterChatCommand("st", "SlashCommand")
 	self:RegisterChatCommand("srntTools", "SlashCommand")
@@ -30,24 +29,24 @@ end
 
 -- Setter & Getters
 function srntTools:autoRepairGet(info)
-	return self.db.profile.autoRepair
+	return srntTools.db.autoRepair
 end
 
 function srntTools:autoVendorGet(info)
-	return self.db.profile.autoVendor
+	return self.db.autoVendor
 end
 
 function srntTools:autoSellSpamGet(info)
-	return self.db.profile.autoSellSpam
+	return self.db.autoSellSpam
 end
 
 function srntTools:customXpBarTextGet(info)
-	return self.db.profile.customXpBarTextEnabled
+	return self.db.customXpBarTextEnabled
 end
 
 
 function srntTools:customXpBarFontsizeGet(info)
-	return self.db.profile.customXpBarFontsize
+	return self.db.customXpBarFontsize
 end
 
 
