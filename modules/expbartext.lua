@@ -20,7 +20,7 @@ function srntTools:updateExpBarText()
     -- Create a FontString for the experience text
     local expText = MainMenuExpBar:CreateFontString(nil, "OVERLAY", "GameTooltipText")
     expText:SetPoint("CENTER", MainMenuBarExpText, "CENTER", 0, 0)
-    expText:SetFont([[Interface\AddOns\srntTools\fonts\expressway.ttf]], srntTools:customXpBarFontsizeGet(), "OUTLINE")
+    expText:SetFont(srntTools:customBarFont(), srntTools:customBarFontsize(), "OUTLINE")
     expText:SetJustifyH("CENTER")
     expText:SetJustifyV("MIDDLE")
     expText:SetText(string.format("Exp: %d / %d (%.2f%%)", currentExp, maxExp, expPercent))

@@ -6,16 +6,22 @@ srntTools.db = {
 	autoSellSpam = true,
 	autoRepair = true,
 	autoRepairAlwaysText = false, -- Toggles the message displayed when opening a repair vendor, even when at 100% durability.
+	
 	customXpBarTextEnabled = true, -- Writes xpbar text as: currentxp / exptotalneeded (expdone%)
-	customXpBarFontsize = 12, -- Font size, defaults to expressway.
-
 	customRepBarText = true,
+	customBarFont = [[Interface\AddOns\srntTools\fonts\expressway.ttf]],
+	customBarFontsize = 12, -- Font size, defaults to expressway.	
 }
 
 -- We need the DB through out the addon
 function srntTools:OnInitialize()
 	self:RegisterChatCommand("st", "SlashCommand")
 	self:RegisterChatCommand("srntTools", "SlashCommand")
+end
+
+-- For now, we simply output a direction to config.
+function srntTools:SlashCommand(input)
+	srntprint("Options are located in LUA file called srntTools.lua")
 end
 
 function srntTools:OnEnable()
@@ -44,14 +50,15 @@ function srntTools:customXpBarTextGet(info)
 	return self.db.customXpBarTextEnabled
 end
 
-function srntTools:customXpBarFontsizeGet(info)
-	return self.db.customXpBarFontsize
+function srntTools:customBarFontsize(info)
+	return self.db.customBarFontsize
 end
 
 function srntTools:customRepBarText(info)
 	return self.db.customRepBarText
 end
 
-function srntTools:SlashCommand(input)
-	srntprint("Options are located in LUA file called srntTools.lua")
+function srntTools:customBarFont(info)
+    local fontPath = self.db.customBarFont
+    return fontPath
 end

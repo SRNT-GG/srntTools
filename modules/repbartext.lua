@@ -26,12 +26,16 @@ function srntTools:updateRepBar()
 
         -- Create a FontString for the experience text
         local repText = ReputationWatchBar:CreateFontString(nil, "OVERLAY", "GameTooltipText")
+        
+        -- Check if expbar is present, if so we add a small vertical ofset to our text.
         local repBarTextOffset = 0
-        if MainMenuExpBar:IsVisible() then -- Exp bar is shown, we slightly nudge our text up to avoid graphical issues.
+        if MainMenuExpBar:IsVisible() then 
             repBarTextOffset = 5
         end
+        
+        -- Style and set the text.
         repText:SetPoint("CENTER", ReputationWatchBar, "CENTER", 0, repBarTextOffset)
-        repText:SetFont([[Interface\AddOns\srntTools\fonts\expressway.ttf]], srntTools:customXpBarFontsizeGet(), "OUTLINE")
+        repText:SetFont(srntTools:customBarFont(), srntTools:customBarFontsize(), "OUTLINE")
         repText:SetJustifyH("CENTER")
         repText:SetJustifyV("MIDDLE")
         repText:SetText(string.format("%s: %d / %d (%.2f%%)", repName, currentRep, maxRep, repPercent))
@@ -46,7 +50,7 @@ frame:SetScript("OnEvent", function(self, event, addonName)
 end)
 
 ReputationWatchBar:HookScript("OnEnter", function(self)
-        -- Disable the default text & tooltip.
+    -- Disable the default text & tooltip.
     ReputationWatchBar.OverlayFrame.Text:Hide()
     GameTooltip:Hide()
 end)
