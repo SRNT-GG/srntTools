@@ -1,10 +1,14 @@
 if srntTools and srntTools:autoRepairGet() then
-    local greenText = "|cff00ff00enabled|r"
-    srntprint("Auto repair is " .. greenText)
+    if srntTools:moduleSpamGet() then
+        local greenText = "|cff00ff00enabled|r"
+        srntprint("Auto repair is " .. greenText)
+    end
 else
-    local redText = "|cffff0000disabled|r"
-    srntprint("Auto repair is " .. redText)
-    return 
+    if srntTools:moduleSpamGet() then
+        local redText = "|cffff0000disabled|r"
+        srntprint("Auto repair is " .. redText)
+        return
+    end
 end
 
 local function autoRepair()

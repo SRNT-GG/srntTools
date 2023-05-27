@@ -2,21 +2,30 @@ srntTools = LibStub("AceAddon-3.0"):NewAddon("srntTools", "AceConsole-3.0", "Ace
 
 -- Default settings
 srntTools.db = {
+	-- Toggle spam of modules.
+	-- This option shows exactly which modules are active, and when they are loaded. It can be spammy.
+	moduleSpam = true,
+
+	-- Automation
 	autoVendor = true,
 	autoSellSpam = true,
 	autoRepair = true,
 	autoRepairAlwaysText = false, -- Toggles the message displayed when opening a repair vendor, even when at 100% durability.
 	
-	customXpBarTextEnabled = true, -- Writes xpbar text as: currentxp / exptotalneeded (expdone%)
-	customRepBarText = true,
-	customBarFont = [[Interface\AddOns\srntTools\fonts\expressway.ttf]],
-	customBarFontsize = 12, -- Font size, defaults to expressway.	
+	-- Customization of databars.
+	customXpBarTextEnabled = true, -- Writes xpbar text as: "Exp: currentxp / exptotalneeded (expdone%)"
+	customRepBarText = true, -- Writes repbar text as: "Faction: currentxp / exptotalneeded (expdone%)"
+	-- Point the addOn to your font path. Needs to be inside of interface.
+	customBarFont = [[Interface\AddOns\srntTools\fonts\expressway.ttf]], 
+	customBarFontsize = 12, -- Font size	
 }
 
--- We need the DB through out the addon
 function srntTools:OnInitialize()
 	self:RegisterChatCommand("st", "SlashCommand")
 	self:RegisterChatCommand("srntTools", "SlashCommand")
+	local version = GetAddOnMetadata("sToolbox", "Version")
+	local addonTitle = "|cff00ff00[srntTools]|r"
+	print(addonTitle .. " v." .. version .. " Loaded. By SRNT Gehennas")
 end
 
 -- For now, we simply output a direction to config.
@@ -61,4 +70,8 @@ end
 function srntTools:customBarFont(info)
     local fontPath = self.db.customBarFont
     return fontPath
+end
+
+function srntTools:moduleSpamGet(info)
+	return srntTools.db.moduleSpam
 end

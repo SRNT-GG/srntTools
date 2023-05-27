@@ -1,10 +1,14 @@
 if srntTools and srntTools:customRepBarText() then
-    local greenText = "|cff00ff00enabled|r"
-    srntprint("Custom rep bar text " .. greenText)
+    if srntTools:moduleSpamGet() then
+        local greenText = "|cff00ff00enabled|r"
+        srntprint("Custom rep bar text " .. greenText)
+    end
 else
-    local redText = "|cffff0000disabled|r"
-    srntprint("Custom rep bar text " .. redText)
-    return 
+    if srntTools:moduleSpamGet() then
+        local redText = "|cffff0000disabled|r"
+        srntprint("Custom rep bar text " .. redText)
+        return
+    end
 end
 
 function srntTools:updateRepBar()

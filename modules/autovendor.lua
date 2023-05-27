@@ -1,10 +1,14 @@
 if srntTools and srntTools:autoVendorGet() then
-    local greenText = "|cff00ff00enabled|r"
-    srntprint("Auto vendor is " .. greenText)
+    if srntTools:moduleSpamGet() then
+        local greenText = "|cff00ff00enabled|r"
+        srntprint("Auto vendor is " .. greenText)
+    end
 else
-    local redText = "|cffff0000disabled|r"
-    srntprint("Auto vendor is " .. redText)
-    return 
+    if srntTools:moduleSpamGet() then
+        local redText = "|cffff0000disabled|r"
+        srntprint("Auto vendor is " .. redText)
+        return
+    end
 end
 
 local DeleteCursorItem = DeleteCursorItem
