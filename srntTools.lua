@@ -8,6 +8,8 @@ srntTools.db = {
 	autoRepairAlwaysText = false, -- Toggles the message displayed when opening a repair vendor, even when at 100% durability.
 	customXpBarTextEnabled = true, -- Writes xpbar text as: currentxp / exptotalneeded (expdone%)
 	customXpBarFontsize = 12, -- Font size, defaults to expressway.
+
+	customRepBarText = true,
 }
 
 -- We need the DB through out the addon
@@ -44,6 +46,10 @@ end
 
 function srntTools:customXpBarFontsizeGet(info)
 	return self.db.customXpBarFontsize
+end
+
+function srntTools:customRepBarText(info)
+	return self.db.customRepBarText
 end
 
 function srntTools:SlashCommand(input)

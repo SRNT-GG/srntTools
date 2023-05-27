@@ -23,3 +23,4 @@ srntTools.lua
 modules\autorepair.lua
 modules\autovendor.lua
 modules\expbartext.lua
+modules\repbartext.lua
