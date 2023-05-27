@@ -22,7 +22,10 @@ end
 function srntTools:OnDisable()
 end
 
--- Setter & Getters
+-- Getters
+function srntTools:getVersion()
+	return GetAddOnMetadata("srntTools", "Version")
+end
 function srntTools:autoRepairGet(info)
 	return self.db.autoRepair
 end
@@ -46,4 +49,3 @@ end
 function srntTools:SlashCommand(input)
 	srntprint("Options are located in LUA file called srntTools.lua")
 end
-
