@@ -30,7 +30,6 @@ local frame = CreateFrame("Frame")
 frame:RegisterEvent("PLAYER_XP_UPDATE")
 frame:RegisterEvent("PLAYER_ENTERING_WORLD")
 frame:SetScript("OnEvent", function(self, event, addonName)
-     -- Update exptext whenever exp is gained
     srntTools:updateExpBarText()
 end)
 

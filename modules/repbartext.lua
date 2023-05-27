@@ -12,8 +12,8 @@ function srntTools:updateRepBar()
     local isTrackingInactive = IsFactionInactive(selectedRepID)
 
     if selectedRepID ~= nil and not isTrackingInactive then
-        -- Expbar text variablesw
-        local repName, repDescription, repStandingID, repBarMin, repBarMax, repBarValue, repAtWarWith, repCanToggleAtWar, _, isHeader, isCollapsed, hasRep, isWatched, isChild, factionID = GetFactionInfo(selectedRepID)
+        -- Reputation bar text below.
+        local repName, _, _, repBarMin, repBarMax, repBarValue, _, _, _, _, _, hasRep, _, _, factionID = GetFactionInfo(selectedRepID)
         if not hasRep then
             return
         end
