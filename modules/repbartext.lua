@@ -49,7 +49,11 @@ end
 local frame = CreateFrame("Frame")
 frame:RegisterEvent("PLAYER_XP_UPDATE")
 frame:RegisterEvent("PLAYER_ENTERING_WORLD")
+frame:RegisterEvent("ADDON_LOADED")
 frame:SetScript("OnEvent", function(self, event, addonName)
+    if event == "ADDON_LOADED" and addonName == "srntTools" then
+        return
+    end
     srntTools:updateRepBar()
 end)
 
