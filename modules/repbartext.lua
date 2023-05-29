@@ -18,9 +18,6 @@ function srntTools:updateRepBar()
     if selectedRepID ~= nil and not isTrackingInactive then
         -- Reputation bar text below.
         local repName, _, _, repBarMin, repBarMax, repBarValue, _, _, _, _, _, hasRep, _, _, factionID = GetFactionInfo(selectedRepID)
-        if not hasRep then
-            return
-        end
         
         local currentRep = repBarValue - repBarMin
         local currentStandingLabel = GetText("FACTION_STANDING_LABEL"..currentRep, UnitSex("player"))
@@ -33,8 +30,10 @@ function srntTools:updateRepBar()
         
         -- Check if expbar is present, if so we add a small vertical ofset to our text.
         local repBarTextOffset = 0
-        if MainMenuExpBar:IsVisible() then 
+        if MainMenuExpBar:IsVisible() then
             repBarTextOffset = 5
+        else
+            return -- Stop execution
         end
         
         -- Style and set the text.
@@ -51,9 +50,6 @@ frame:RegisterEvent("PLAYER_XP_UPDATE")
 frame:RegisterEvent("PLAYER_ENTERING_WORLD")
 frame:RegisterEvent("ADDON_LOADED")
 frame:SetScript("OnEvent", function(self, event, addonName)
-    if event == "ADDON_LOADED" and addonName == "srntTools" then
-        return
-    end
     srntTools:updateRepBar()
 end)
 
