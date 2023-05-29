@@ -1,5 +1,5 @@
 # srntTools
-A addOn to World of Warcraft Classic Wotlk that does small QOL stuff. 
+A addOn for World of Warcraft Classic Wotlk that does small QOL stuff. 
 
 
 ## Features
