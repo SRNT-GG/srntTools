@@ -11,6 +11,9 @@ else
     end
 end
 
+-- Exp text needs to be outside, or we'll reinstanciate it over and over.
+local expText = MainMenuExpBar:CreateFontString(nil, "OVERLAY", "GameTooltipText")
+
 function srntTools:updateExpBarText()
     if UnitLevel("player") >= 80 then
         return -- Expbar only visible when you're lower level than cap.
@@ -22,7 +25,6 @@ function srntTools:updateExpBarText()
     local remainingExp = maxExp - currentExp
 
     -- Create a FontString for the experience text
-    local expText = MainMenuExpBar:CreateFontString(nil, "OVERLAY", "GameTooltipText")
     expText:SetPoint("CENTER", MainMenuBarExpText, "CENTER", 0, 0)
     expText:SetFont(srntTools:customBarFont(), srntTools:customBarFontsize(), "OUTLINE")
     expText:SetJustifyH("CENTER")

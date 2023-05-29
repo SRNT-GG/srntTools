@@ -11,6 +11,9 @@ else
     end
 end
 
+-- Create a FontString for the experience text
+local repText = ReputationWatchBar:CreateFontString(nil, "OVERLAY", "GameTooltipText")
+        
 function srntTools:updateRepBar()
     local selectedRepID = GetSelectedFaction()
     local isTrackingInactive = IsFactionInactive(selectedRepID)
@@ -19,21 +22,17 @@ function srntTools:updateRepBar()
         -- Reputation bar text below.
         local repName, _, _, repBarMin, repBarMax, repBarValue, _, _, _, _, _, hasRep, _, _, factionID = GetFactionInfo(selectedRepID)
         
-        local currentRep = repBarValue - repBarMin
-        local currentStandingLabel = GetText("FACTION_STANDING_LABEL"..currentRep, UnitSex("player"))
-        local maxRep = repBarMax - repBarMin
-        local repPercent = currentRep / maxRep * 100
-        local remainingRep = maxRep - currentRep
+        local currentRep = repBarValue - repBarMin or 0
+        local currentStandingLabel = GetText("FACTION_STANDING_LABEL"..currentRep, UnitSex("player")) or "Unknown"
+        local maxRep = repBarMax - repBarMin or 0
+        local repPercent = currentRep / maxRep * 100 or 0
+        local remainingRep = maxRep - currentRep or 0
 
-        -- Create a FontString for the experience text
-        local repText = ReputationWatchBar:CreateFontString(nil, "OVERLAY", "GameTooltipText")
-        
+
         -- Check if expbar is present, if so we add a small vertical ofset to our text.
         local repBarTextOffset = 0
         if MainMenuExpBar:IsVisible() then
             repBarTextOffset = 5
-        else
-            return -- Stop execution
         end
         
         -- Style and set the text.

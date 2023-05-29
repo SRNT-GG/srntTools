@@ -16,6 +16,9 @@ srntTools.db = {
 	-- Toggles the message displayed when opening a repair vendor, even when at 100% durability.
 	autoRepairAlwaysText = false, 
 	
+	-- Toggles questlog to be double width.
+	wideQuestLog = true,
+
 	-- Customization of databars.
 	-- Writes xpbar text as: "Exp: currentxp / exptotalneeded (expdone%)"
 	customXpBarTextEnabled = true,
