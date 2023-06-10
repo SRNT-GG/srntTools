@@ -1,6 +1,6 @@
 ## Interface: 30401
 ## Title: SrntTools
-## Notes: Small useful tools. /srntTools ingame for config.
+## Notes: Small useful tools. Configurable in LUA, inside srntTools.lua
 ## Author: SRNT 
 ## Version: 0.2.2
 ## SavedVariables: srntToolsDB
